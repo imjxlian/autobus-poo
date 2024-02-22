@@ -41,6 +41,7 @@ class Autobus {
     for (PassagerStandard passager : passagers) {
       passager.nouvelArret(this, this.numeroArret);
     }
+    this.numeroArret++;
   }
 
   public void arretDemanderAssis(PassagerStandard p) {
