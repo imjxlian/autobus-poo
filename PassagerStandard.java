@@ -10,7 +10,7 @@ class PassagerStandard {
   public PassagerStandard(String nom, int destination) {
     this.nom = nom;
     this.destination = destination;
-    monEtat = new Position();
+    monEtat = Position.creer();
   }
 
   // methods
