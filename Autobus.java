@@ -37,11 +37,12 @@ class Autobus {
   }
 
   public void allerArretSuivant() {
+    this.numeroArret++;
     // Parcours des passagers stockés dans l'autobus
-    for (PassagerStandard passager : passagers) {
+    ArrayList<PassagerStandard> passagersCopie = new ArrayList<PassagerStandard>(passagers);
+    for (PassagerStandard passager : passagersCopie) {
       passager.nouvelArret(this, this.numeroArret);
     }
-    this.numeroArret++;
   }
 
   public void arretDemanderAssis(PassagerStandard p) {
