@@ -5,12 +5,14 @@ class Autobus {
 
   private int numeroArret;
   private ArrayList<PassagerStandard> passagers;
+  private ArrayList<PassagerStandard> passagersAllantDehors;
   private Jauge assis;
   private Jauge debout;
 
   // constructor
   public Autobus(int nbPlaceAssise, int nbPlaceDebout) {
     this.passagers = new ArrayList<>(nbPlaceAssise + nbPlaceDebout);
+    this.passagersAllantDehors = new ArrayList<>(nbPlaceAssise + nbPlaceDebout);
     this.assis = new Jauge(nbPlaceAssise, 0);
     this.debout = new Jauge(nbPlaceDebout, 0);
   }
@@ -39,10 +41,11 @@ class Autobus {
   public void allerArretSuivant() {
     this.numeroArret++;
     // Parcours des passagers stockés dans l'autobus
-    ArrayList<PassagerStandard> passagersCopie = new ArrayList<PassagerStandard>(passagers);
-    for (PassagerStandard passager : passagersCopie) {
+    for (PassagerStandard passager : passagers) {
       passager.nouvelArret(this, this.numeroArret);
     }
+    passagers.removeAll(passagersAllantDehors);
+    passagersAllantDehors.clear();
   }
 
   public void arretDemanderAssis(PassagerStandard p) {
@@ -63,7 +66,7 @@ class Autobus {
     else if (p.estDebout())
       debout.decrementer();
 
-    passagers.remove(p);
+    passagersAllantDehors.add(p);
     p.changerEnDehors();
   }
 
