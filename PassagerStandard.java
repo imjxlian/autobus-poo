@@ -48,7 +48,6 @@ class PassagerStandard {
     } else {
       t.monteeDemanderDebout(this);
     }
-
   }
 
   public void nouvelArret(Autobus t, int numeroArret) {
@@ -58,6 +57,6 @@ class PassagerStandard {
   }
 
   public String toString() {
-    return "";
+    return this.nom() + " " + this.monEtat.toString();
   }
 }
