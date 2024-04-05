@@ -1,10 +1,10 @@
 package tec;
 import java.util.ArrayList;
-public class Autobus {
+public class Autobus implements DemandeArret, DemandeMontee, Transport {
 
   private int numeroArret;
-  private ArrayList<PassagerStandard> passagers;
-  private ArrayList<PassagerStandard> passagersAllantDehors;
+  private ArrayList<Passager> passagers;
+  private ArrayList<Passager> passagersAllantDehors;
   private Jauge assis;
   private Jauge debout;
 
@@ -25,13 +25,13 @@ public class Autobus {
     return debout.estVert();
   }
 
-  public void monteeDemanderAssis(PassagerStandard p) {
+  public void monteeDemanderAssis(Passager p) {
     passagers.add(p);
     assis.incrementer();
     p.changerEnAssis();
   }
 
-  public void monteeDemanderDebout(PassagerStandard p) {
+  public void monteeDemanderDebout(Passager p) {
     passagers.add(p);
     debout.incrementer();
     p.changerEnDebout();
@@ -40,26 +40,26 @@ public class Autobus {
   public void allerArretSuivant() {
     this.numeroArret++;
     // Parcours des passagers stockés dans l'autobus
-    for (PassagerStandard passager : passagers) {
+    for (Passager passager : passagers) {
       passager.nouvelArret(this, this.numeroArret);
     }
     passagers.removeAll(passagersAllantDehors);
     passagersAllantDehors.clear();
   }
 
-  public void arretDemanderAssis(PassagerStandard p) {
+  public void arretDemanderAssis(Passager p) {
     debout.decrementer();
     assis.incrementer();
     p.changerEnAssis();
   }
 
-  public void arretDemanderDebout(PassagerStandard p) {
+  public void arretDemanderDebout(Passager p) {
     assis.decrementer();
     debout.incrementer();
     p.changerEnDebout();
   }
 
-  public void arretDemanderSortie(PassagerStandard p) {
+  public void arretDemanderSortie(Passager p) {
     if (p.estAssis())
       assis.decrementer();
     else if (p.estDebout())

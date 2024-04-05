@@ -18,7 +18,7 @@ package tec;
  * @author georgy
  * @since 2006-2019
  */
-class Jauge { 
+class Jauge {
   private int valeur;
   private final int MAX;
 

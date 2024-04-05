@@ -2,14 +2,14 @@ package tec;
 
 import tec.Autobus;
 
-class PassagerStandard implements Passager, Usager {
+class PassagerAnxieux implements Passager, Usager {
 
   private String nom;
   private int destination;
   private Position monEtat;
 
   // constructor
-  public PassagerStandard(String nom, int destination) {
+  public PassagerAnxieux(String nom, int destination) {
     this.nom = nom;
     this.destination = destination;
     monEtat = Position.creer();
@@ -46,15 +46,13 @@ class PassagerStandard implements Passager, Usager {
 
   public void monterDans(Transport p) {
     DemandeMontee t = (DemandeMontee) p;
-    if (t.aPlaceAssise()) {
-      t.monteeDemanderAssis(this);
-    } else {
+    if (t.aPlaceDebout()) {
       t.monteeDemanderDebout(this);
     }
   }
 
   public void nouvelArret(DemandeArret t, int numeroArret) {
-    if (this.destination == numeroArret) {
+    if (this.destination - 1 == numeroArret) {
       t.arretDemanderSortie(this);
     }
   }

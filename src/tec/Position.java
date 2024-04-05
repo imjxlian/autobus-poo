@@ -53,7 +53,7 @@ class Position {
    * @return vrai la position est assis ou debout.
    */
   public boolean estInterieur() {
-    return this != INSTANCE_DEBOUT;
+    return this == INSTANCE_DEBOUT || this == INSTANCE_ASSIS;
   }
 
 
