@@ -4,11 +4,13 @@ abstract class FactoPassager implements Passager, Usager {
     private String nom;
     private int destination;
     private Position monEtat;
+    private Arret arret;
 
-    protected FactoPassager(String nom, int destination) {
+    protected FactoPassager(String nom, int destination, Arret arret) {
         this.nom = nom;
         this.destination = destination;
         monEtat = Position.creer();
+        this.arret = arret;
     }
 
     public String nom() {
@@ -82,9 +84,7 @@ abstract class FactoPassager implements Passager, Usager {
     public void nouvelArret(DemandeArret t, int numeroArret) {
         this.sortir(t, numeroArret);
         if (!this.sortir(t, numeroArret)) {
-            choixNouvelArret(t, numeroArret - this.destination);
+            this.arret.choixNouvelArret(this, t, numeroArret - this.destination);
         }
     }
-
-    abstract protected void choixNouvelArret(DemandeArret t, int distanceDestination);
 }
