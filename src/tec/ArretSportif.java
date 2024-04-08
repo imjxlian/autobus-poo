@@ -1,0 +1,3 @@
+class ArretAgoraphobe implements Arret {
+
+}

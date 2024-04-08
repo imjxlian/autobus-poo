@@ -1,0 +1,4 @@
+package tec;
+class MonteeTetu {
+
+}

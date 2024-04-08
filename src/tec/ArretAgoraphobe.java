@@ -1,0 +1,3 @@
+class ArretPrudent implements Arret {
+
+}

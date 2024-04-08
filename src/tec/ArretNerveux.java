@@ -1,0 +1,3 @@
+class ArretCalme implements Arret {
+
+}
