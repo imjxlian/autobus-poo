@@ -1,23 +1,20 @@
 package tec;
 
-class PassagerLunatique extends PassagerStandard {
+class PassagerLunatique extends FactoPassager {
 
     public PassagerLunatique(String nom, int destination) {
         super(nom, destination);
     }
 
-    @Override
-    public void nouvelArret(DemandeArret bus, int numeroArret) {
-        super.nouvelArret(bus, numeroArret);
+    public void monterDans(Transport p) {
+        this.assisDebout((DemandeMontee) p);
+    }
 
-        if (!this.estDehors()) {
-            if (this.estAssis()) {
-                this.changerEnDebout();
-                bus.arretDemanderDebout(this);
-            } else if (this.estDebout()) {
-                this.changerEnAssis();
-                bus.arretDemanderAssis(this);
-            }
+    public void choixNouvelArret(DemandeArret t, int distanceDestination) {
+        if (this.estAssis()) {
+            t.arretDemanderDebout(this);
+        } else if (this.estDebout()) {
+            t.arretDemanderAssis(this);
         }
     }
 }

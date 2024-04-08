@@ -2,29 +2,19 @@ package tec;
 
 import tec.Autobus;
 
-class PassagerStresse extends PassagerStandard {
+class PassagerStresse extends FactoPassager {
 
-  private int destination;
   public PassagerStresse(String nom, int destination) {
     super(nom, destination);
-    this.destination = destination;
   }
 
-  @Override
   public void monterDans(Transport p) {
-    DemandeMontee t = (DemandeMontee) p;
-    if (t.aPlaceAssise()) {
-      t.monteeDemanderAssis(this);
-    }
+    this.assis((DemandeMontee) p);
   }
 
-  @Override
-  public void nouvelArret(DemandeArret t, int numeroArret) {
-    if (this.destination - 3 == numeroArret) {
+  public void choixNouvelArret(DemandeArret t, int distanceDestination) {
+    if (distanceDestination == 3) {
       t.arretDemanderDebout(this);
-    }
-    if (this.destination == numeroArret) {
-      t.arretDemanderSortie(this);
     }
   }
 }
